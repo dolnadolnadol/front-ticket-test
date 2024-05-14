@@ -1,6 +1,7 @@
 import { FC } from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import { AboutPage } from "./pages/About";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
+import { AboutPage } from "./pages/AboutPage";
 import { Homepage } from "./pages/Home";
 import Throny from "./pages/Throny";
 import Tickets from "./pages/Tickets";
@@ -8,19 +9,9 @@ import Tickets from "./pages/Tickets";
 const App: FC = () => {
   return (
     <>
-      <div className="relative bg-red-800 h-screen w-screen">
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 left-[50%] top-[50%]">
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/thorn" element={<Throny />} />
-            <Route path="/tickets" element={<Tickets />} />
-          </Routes>
-          {/* <p className="drop-shadow-lg shadow-blue-700 text-6xl motion-safe:animate-bounce">
-            hello
-          </p> */}
-        </div>
-        <div className="bg-blue-500 h-screen w-[10rem]">
+      <Layout>
+        {/* <div className="relative flex bg-red-800 h-[100%] w-screen"> */}
+        {/* <div className="bg-blue-500 h-screen w-[10rem] sticky top-0">
           <div className="ml-5 text-2xl">
             <ul>
               <li>
@@ -37,8 +28,18 @@ const App: FC = () => {
               </li>
             </ul>
           </div>
-        </div>
-      </div>
+        </div> */}
+        {/* <div className=" ml-[3rem] mr-[2rem] lg:ml-[5rem] lg:mr-[3rem] mt-[2rem]"> */}
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/thorn" element={<Throny />} />
+          <Route path="/tickets/*" element={<Tickets />}>
+          </Route>
+        </Routes>
+        {/* </div> */}
+        {/* </div> */}
+      </Layout>
     </>
   );
 };

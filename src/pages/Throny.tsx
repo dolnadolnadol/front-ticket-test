@@ -6,28 +6,27 @@ const Throny = () => {
     queryKey: ["allProduct"],
     queryFn: getProduct,
   });
+
   if (isLoading || isError) {
     return (
-      <>
-        <div>LOADING...</div>
-      </>
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-xl font-semibold">{isLoading ? "LOADING..." : isError}</div>
+      </div>
     );
   }
+
   return (
-    <>
-      <div className="grid grid-cols-4 space-x-3 space-y-2">
-        {data &&
-          data.map((result: any) => (
-            <>
-              <div className="shadow-xl transition ease-in-out hover:-translate-y-1 hover:scale-110 bg-white p-5 w-36">
-                <img src={result.image_url} className="h-36" />
-                <div>{result.product_name}</div>
-                <div>{result.description}</div>
-              </div>
-            </>
-          ))}
-      </div>
-    </>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mr-[10rem]">
+      {data &&
+        data.map((result: any) => (
+          <div key={result.product_id} className="bg-white rounded-lg shadow-md p-6">
+            <div className="font-semibold mb-2">Product ID: {result.product_id}</div>
+            <img src={result.image_url} alt={result.product_name} className="h-36 object-contain mb-2" />
+            <div className="font-semibold mb-2">Product Name: {result.product_name}</div>
+            <div className="text-sm text-gray-600">{result.description}</div>
+          </div>
+        ))}
+    </div>
   );
 };
 

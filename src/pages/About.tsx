@@ -1,10 +1,16 @@
+import { Button, Modal, Title } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+
 export const AboutPage = () => {
+  const [opened, { open, close }] = useDisclosure(false);
   return (
     <>
-      <div>
-        <a className="text-2xl">about</a>
-        <a className="text-6xl">fuck you</a>
-      </div>
+      <Modal onClose={close} opened={opened}>
+        <Title>
+          {"Hello world"}
+        </Title>
+      </Modal>
+      <Button onClick={open}> open modal</Button>
     </>
   );
 };
